@@ -174,7 +174,6 @@
     z-index: 1;
   }
 
-  /* Animated corner accents */
   #hero::before, #hero::after {
     content: '';
     position: absolute;
@@ -215,6 +214,7 @@
   @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-30px)} }
   @keyframes float3 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(20px,20px)} 66%{transform:translate(-20px,10px)} }
 
+  /* === HERO LAYOUT === */
   .hero-layout {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -380,7 +380,6 @@
     height: 400px;
   }
 
-  /* Rotating border rings */
   .photo-ring-outer {
     position: absolute;
     inset: -20px;
@@ -404,7 +403,6 @@
     to { transform: rotate(-360deg); }
   }
 
-  /* Corner brackets */
   .photo-corner {
     position: absolute;
     width: 24px; height: 24px;
@@ -429,7 +427,6 @@
     z-index: 1;
   }
 
-  /* Photo overlay: cyan duotone tint */
   .photo-overlay {
     position: absolute;
     inset: 0;
@@ -444,7 +441,6 @@
     pointer-events: none;
   }
 
-  /* Scan line animation on photo */
   .photo-scan {
     position: absolute;
     inset: 0;
@@ -467,7 +463,6 @@
     to { top: 100%; }
   }
 
-  /* Photo label */
   .photo-label {
     position: absolute;
     bottom: -32px;
@@ -481,7 +476,6 @@
     opacity: 0.7;
   }
 
-  /* Floating badge */
   .photo-badge {
     position: absolute;
     top: 20px;
@@ -1009,30 +1003,148 @@
   }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* === RESPONSIVE === */
+  /* ============================================================
+     RESPONSIVE — FIXED: photo now visible on all screen sizes
+     ============================================================ */
+
+  /* Tablet / small desktop: stack photo below content */
   @media (max-width: 1200px) {
-    .hero-layout { grid-template-columns: 1fr; }
-    .hero-photo-wrap { display: none; }
-    .hero-stats-row { display: none; }
     nav { padding: 18px 32px; }
-    #hero { padding: 120px 32px 80px; }
+    nav.scrolled { padding: 14px 32px; }
+
+    #hero {
+      padding: 100px 32px 80px;
+      align-items: flex-start;
+    }
+
+    /* Stack hero vertically: content first, then photo */
+    .hero-layout {
+      grid-template-columns: 1fr;
+      gap: 56px;
+      justify-items: center;
+    }
+
+    .hero-content {
+      max-width: 100%;
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-tag { justify-content: center; }
+
+    .hero-title {
+      justify-content: center;
+    }
+
+    .hero-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    /* Photo visible, centered, with badge repositioned */
+    .hero-photo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-photo-frame {
+      width: 260px;
+      height: 325px;
+    }
+
+    /* Move badge inside frame so it doesn't overflow */
+    .photo-badge {
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      top: auto;
+      bottom: -48px;
+      white-space: nowrap;
+    }
+
+    /* Stats row visible below photo */
+    .hero-stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 72px;
+      gap: 2px;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .stat-pill {
+      flex: 1 1 calc(50% - 2px);
+      min-width: 120px;
+    }
+
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .exp-container { grid-template-columns: 1fr; }
+    .exp-container { grid-template-columns: 1fr; gap: 24px; }
     .exp-timeline::after { display: none; }
     .exp-content { padding-left: 0; }
     .projects-grid { grid-template-columns: 1fr 1fr; }
     .comp-grid { grid-template-columns: 1fr 1fr; }
+
     #about, #experience, #projects, #competencies, #contact { padding: 80px 32px; }
     footer { padding: 32px; }
   }
+
+  /* Mobile */
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
+    nav.scrolled { padding: 12px 20px; }
     .nav-links { gap: 20px; }
     .nav-links a { font-size: 0.62rem; }
-    #hero { padding: 100px 20px 60px; }
+
+    #hero { padding: 90px 20px 60px; }
+
+    .hero-photo-frame {
+      width: 220px;
+      height: 275px;
+    }
+
+    .photo-badge {
+      font-size: 0.52rem;
+      padding: 8px 12px;
+      bottom: -44px;
+    }
+
+    .photo-badge-val {
+      font-size: 1.2rem;
+    }
+
+    .hero-stats-row {
+      max-width: 100%;
+      margin-top: 64px;
+    }
+
+    .stat-pill {
+      flex: 1 1 calc(50% - 2px);
+      padding: 12px 16px;
+    }
+
+    .stat-num { font-size: 1.4rem; }
+
     .projects-grid, .comp-grid { grid-template-columns: 1fr; }
     #about, #experience, #projects, #competencies, #contact { padding: 60px 20px; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+
+    .about-skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Very small phones */
+  @media (max-width: 380px) {
+    .hero-photo-frame {
+      width: 190px;
+      height: 240px;
+    }
+    .about-skills-grid { grid-template-columns: 1fr; }
+    .stat-pill { flex: 1 1 100%; }
   }
 </style>
 </head>
@@ -1089,7 +1201,7 @@
       </div>
     </div>
 
-    <!-- PROFILE PHOTO -->
+    <!-- PROFILE PHOTO — always visible on all screen sizes -->
     <div class="hero-photo-wrap">
       <div class="hero-photo-frame">
         <div class="photo-ring-outer"></div>
@@ -1099,11 +1211,6 @@
         <div class="photo-corner bl"></div>
         <div class="photo-corner br"></div>
 
-        <!-- 
-          *** REPLACE THE src BELOW WITH YOUR ACTUAL PHOTO ***
-          You can use a relative path like: src="photo.jpg"
-          or a full URL. The photo will be cropped to 320x400, anchored to the top.
-        -->
         <img 
           class="hero-photo" 
           id="profilePhoto"
@@ -1460,7 +1567,7 @@ window.addEventListener('scroll', () => {
 
 // === FADE-UP OBSERVER ===
 const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
+  entries.forEach(e => {
     if (e.isIntersecting) {
       setTimeout(() => e.target.classList.add('visible'), e.target.dataset.delay || 0);
     }
@@ -1494,7 +1601,7 @@ class Particle {
     this.speedX = (Math.random() - 0.5) * 0.4;
     this.speedY = (Math.random() - 0.5) * 0.4;
     this.opacity = Math.random() * 0.5 + 0.1;
-    this.hue = Math.random() > 0.8 ? 270 : 175; // cyan or purple
+    this.hue = Math.random() > 0.8 ? 270 : 175;
   }
   update() {
     this.x += this.speedX;
@@ -1537,8 +1644,7 @@ function animate() {
 }
 animate();
 
-// === PHOTO DRAG-AND-DROP ===
-// Allows dropping a photo file onto the profile image area to set it
+// === PHOTO CLICK TO UPLOAD ===
 const photoEl = document.getElementById('profilePhoto');
 photoEl.addEventListener('click', () => {
   const inp = document.createElement('input');
