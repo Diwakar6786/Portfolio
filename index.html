@@ -237,19 +237,21 @@
   .hero-tag {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.6rem;
     color: var(--accent);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 36px;
-    padding: 9px 18px;
+    margin-bottom: 28px;
+    padding: 8px 14px;
     border: 1px solid var(--border-bright);
     border-radius: 2px;
     background: rgba(0,245,233,0.04);
     position: relative;
     overflow: hidden;
+    max-width: 100%;
+    flex-wrap: wrap;
   }
   .hero-tag::before {
     content: '●';
@@ -269,10 +271,10 @@
   }
 
   .hero-name {
-    font-size: clamp(3.5rem, 8vw, 8.5rem);
+    font-size: clamp(2.2rem, 12vw, 8.5rem);
     font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
     margin-bottom: 24px;
   }
   .hero-name .line1 {
@@ -295,24 +297,24 @@
 
   .hero-title {
     font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
-    letter-spacing: 0.06em;
-    margin-bottom: 32px;
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
     animation: hero-slide-up 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both;
   }
   .hero-title .sep { color: var(--accent); opacity: 0.5; }
 
   .hero-desc {
-    font-size: 1.05rem;
+    font-size: 0.97rem;
     color: var(--text-dim);
     line-height: 1.75;
     max-width: 580px;
-    margin-bottom: 52px;
+    margin-bottom: 40px;
     animation: hero-slide-up 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
   }
 
@@ -637,10 +639,10 @@
   }
 
   .section-title {
-    font-size: clamp(2rem, 4.5vw, 4rem);
+    font-size: clamp(1.8rem, 6vw, 4rem);
     font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 1.0;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
     margin-bottom: 64px;
   }
 
@@ -923,7 +925,7 @@
   }
 
   .contact-title {
-    font-size: clamp(2.8rem, 7vw, 6.5rem);
+    font-size: clamp(2.2rem, 10vw, 6.5rem);
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 0.95;
@@ -1104,7 +1106,13 @@
     .nav-links { gap: 16px; }
     .nav-links a { font-size: 0.62rem; letter-spacing: 0.06em; }
 
-    #hero { padding: 90px 20px 60px; }
+    #hero { padding: 90px 16px 60px; }
+
+    .hero-name { font-size: clamp(2.4rem, 13vw, 3.5rem); letter-spacing: -0.02em; }
+    .hero-tag { font-size: 0.56rem; letter-spacing: 0.06em; padding: 7px 12px; margin-bottom: 20px; }
+    .hero-title { font-size: 0.62rem; letter-spacing: 0.02em; gap: 6px; margin-bottom: 20px; }
+    .hero-desc { font-size: 0.9rem; margin-bottom: 28px; }
+    .hero-cta { gap: 10px; }
 
     .hero-photo-frame { width: 200px; height: 250px; }
 
@@ -1163,8 +1171,9 @@
     footer { padding: 16px; }
 
     .btn-primary, .btn-secondary {
-      padding: 13px 24px;
-      font-size: 0.68rem;
+      padding: 12px 20px;
+      font-size: 0.65rem;
+      clip-path: none;
     }
   }
 
@@ -1215,7 +1224,11 @@
         <span class="line2">THAKUR</span>
       </h1>
       <div class="hero-title">
-        ESP32 · STM32 · FreeRTOS <span class="sep">///</span> Modbus · OPC UA · Profinet <span class="sep">///</span> Mumbai, India
+        <span>ESP32 · STM32 · FreeRTOS</span>
+        <span class="sep">///</span>
+        <span>Modbus · OPC UA · Profinet</span>
+        <span class="sep">///</span>
+        <span>Mumbai, India</span>
       </div>
       <p class="hero-desc">
         Architecting production-grade Industrial IoT systems and edge computing solutions.
